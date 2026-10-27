@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f0e5">
+<title>DulaMotion — Every frame has a purpose.</title>
+<meta name="description" content="DulaMotion — video editing, motion design, and AI-enhanced visual storytelling for creators and brands.">
+<style>
+:root {
+  --bg: #f5f0e5;
+  --surface: #fffdf7;
+  --surface-raised: #ffffff;
+  --text: #171717;
+  --muted: #65645f;
+  --line: #d8d1c4;
+  --accent: #304bff;
+  --accent-strong: #304bff;
+  --site-primary: #304BFF;
+  --site-secondary: #171717;
+  --site-background: #F5F0E5;
+  --site-on-primary: #FFFFFF;
+  --site-on-secondary: #FFFFFF;
+  --site-on-background: #171717;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--site-font-body); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
+.root { min-height: 100vh; background-color: var(--site-background); color: var(--site-on-background); overflow: hidden; border-radius: 0; }
+.wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+.nav { height: 82px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ded7ca; }
+.logo { font-size: 27px; letter-spacing: -1.7px; font-weight: 950; }
+.logo span { color: var(--accent); }
+.navlinks { display: flex; align-items: center; gap: 30px; font-size: 13px; letter-spacing: .02em; color: #171717; font-weight: 750; }
+.navlinks a { transition: color .2s ease; }
+.navlinks a:hover { color: var(--accent); }
+.nav-contact { border: 1.5px solid #171717; padding: 11px 16px; border-radius: 999px; color: #171717 !important; background: #fffdf7; transition: background .2s ease, border-color .2s ease; }
+.nav-contact:hover { background: #e9edff; border-color: var(--accent); }
+.menu { display: none; border: 1px solid var(--ink, #171717); border-radius: 50%; width: 42px; height: 42px; color: #171717; background: #fffdf7; cursor: pointer; }
+.hero { position: relative; text-align: center; padding: 76px 0 94px; }
+.eyebrows { display: flex; justify-content: center; gap: 9px; flex-wrap: wrap; margin-bottom: 25px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid #171717; border-radius: 999px; padding: 10px 15px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: #171717; background: #fffdf7; backdrop-filter: blur(12px); }
+.dot { width: 7px; height: 7px; background: #20a464; border-radius: 50%; box-shadow: 0 0 0 4px #20a4642b; }
+.brand-script { margin: 0 auto 17px; color: var(--accent); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(21px, 3vw, 30px); font-style: italic; font-weight: 500; letter-spacing: -.045em; line-height: 1; }
+.hero h1 { font-size: clamp(48px, 9vw, 98px); line-height: .98; letter-spacing: -.085em; margin: 0 auto; max-width: 980px; font-weight: 760; }
+.hero h1 .accent { color: var(--accent); }
+.role { margin: 25px auto 0; color: #171717; font-size: clamp(16px, 2.2vw, 21px); font-weight: 550; letter-spacing: -.01em; }
+.hero .desc { font-size: clamp(15px, 2vw, 18px); line-height: 1.8; color: #59574f; max-width: 620px; margin: 18px auto 0; font-weight: 400; }
+.actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 11px; padding: 14px 20px; border: 2px solid #171717; border-radius: 999px; font-size: 15px; font-weight: 800; background: #fffdf7; color: #171717; box-shadow: 4px 5px 0 #171717; transition: transform .22s ease, background .22s ease, border-color .22s ease; }
+.btn:hover { transform: translateY(-2px); background: #e9edff; border-color: var(--accent); }
+.btn.primary { background: #304bff; color: #fff; border-color: #171717; }
+.btn.primary:hover { background: #243de0; }
+.section { padding: 83px 0; border-top: 1px solid var(--line); }
+.sectionhead { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
+.kicker { font-size: 11px; letter-spacing: .17em; text-transform: uppercase; font-weight: 900; color: var(--accent); }
+h2 { font-size: clamp(34px, 5vw, 54px); letter-spacing: -.07em; line-height: 1.04; margin: 12px 0 0; font-weight: 680; }
+.sectionhead p { color: var(--muted); max-width: 350px; line-height: 1.75; font-size: 13px; margin: 0; }
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+.project { border: 1px solid #d8d1c4; border-radius: 18px; background: #fffdf7; padding: 12px; overflow: hidden; transition: border-color .25s ease, transform .25s ease, background .25s ease; }
+.project:hover { transform: translateY(-3px); border-color: var(--accent); background: #ffffff; }
+.embed { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 11px; background: #e9e3d7; }
+.embed.vertical { aspect-ratio: 9 / 16; max-width: 300px; margin: 0 auto; }
+.embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.embed-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; color: #171717; background: radial-gradient(ellipse at 50% 20%, #fffdf7 0%, #e9e3d7 72%); }
+.play { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid #171717; background: #fffdf7; border-radius: 50%; margin-bottom: 13px; color: #fff; font-size: 17px; }
+.embed-placeholder strong { color: #171717; font-size: 13px; font-weight: 600; }
+.embed-placeholder small { font-size: 11px; line-height: 1.6; margin-top: 6px; max-width: 250px; }
+.projectfoot { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 15px 5px 5px; }
+.projectfoot strong { font-size: 14px; font-weight: 650; }
+.projectfoot small { display: inline-block; color: var(--muted); font-size: 10px; margin-top: 5px; letter-spacing: .08em; }
+.arrow { font-size: 18px; color: #c5c9d6; }
+.hint { font-size: 11px; color: #777d8c; line-height: 1.7; margin-top: 15px; }
+.services { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 13px; }
+.service { border: 1px solid var(--line); border-radius: 17px; padding: 26px; background: #fffdf7; transition: transform .22s ease, border-color .22s ease, background .22s ease; }
+.service:hover { transform: translateY(-3px); border-color: var(--accent); background: #fffdf7; }
+.service .num { font-size: 10px; color: var(--accent); font-weight: 700; letter-spacing: .12em; }
+.service h3 { font-size: 21px; letter-spacing: -.045em; margin: 28px 0 10px; font-weight: 650; }
+.service p { font-size: 13px; line-height: 1.8; color: var(--muted); margin: 0; }
+.aboutgrid { display: grid; grid-template-columns: 1fr .85fr; gap: 55px; align-items: center; }
+.aboutgrid p { color: var(--muted); line-height: 1.9; font-size: 15px; }
+.note { border: 1px solid var(--line); background: #171717; color: #f5f0e5; border-radius: 20px; padding: 34px; font-size: clamp(25px, 4vw, 42px); line-height: 1.13; font-weight: 650; letter-spacing: -.06em; }
+.note span { color: var(--accent); }
+.contact { border: 1px solid rgba(255,255,255,.16); background: #304bff; color: #fff; border-radius: 22px; padding: clamp(28px, 6vw, 58px); display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+.contact h2 { font-size: clamp(36px, 6vw, 62px); max-width: 650px; }
+.contact p { line-height: 1.7; color: var(--muted); font-size: 14px; }
+.contact-links { display: grid; gap: 12px; margin-top: 25px; }
+.contact-links a { width: fit-content; display: inline-flex; gap: 10px; align-items: center; color: #f3f4f8; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,.22); padding-bottom: 5px; transition: color .2s ease, border-color .2s ease; }
+.contact-links a:hover { color: var(--accent); border-color: var(--accent); }
+.footer { padding: 27px 0 34px; display: flex; justify-content: space-between; gap: 15px; align-items: center; font-size: 11px; color: var(--muted); }
+.footer strong { color: var(--text); }
+.socials { display: flex; gap: 20px; flex-wrap: wrap; }
+.socials a { transition: color .2s ease; }
+.socials a:hover { color: var(--accent); }
+@media (min-width: 850px) {
+  .projects.short-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  .projects.long-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .projects.short-grid .project { padding: 10px; }
+  .short-heading { margin-top: 58px; }
+}
+@media (max-width: 650px) {
+  .wrap { width: min(100% - 30px, 1120px); }
+  .nav { height: 70px; }
+  .navlinks { display: none; }
+  .menu { display: block; }
+  .navlinks.open { display: flex; position: absolute; top: 69px; left: 0; right: 0; background: rgba(245,240,229,.98); padding: 22px; z-index: 5; flex-direction: column; align-items: stretch; gap: 20px; border-bottom: 1px solid var(--line); backdrop-filter: blur(18px); }
+  .nav-contact { text-align: center; }
+  .hero { padding: 58px 0 66px; }
+  .brand-script { margin: 0 auto 17px; color: var(--accent); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(21px, 3vw, 30px); font-style: italic; font-weight: 500; letter-spacing: -.045em; line-height: 1; }
+.hero h1 { font-size: clamp(46px, 14vw, 70px); }
+  .hero .desc { font-size: 15px; }
+  .section { padding: 60px 0; }
+  .sectionhead { display: block; }
+  .sectionhead p { margin-top: 14px; }
+  .projects { grid-template-columns: 1fr; }
+  .projects.short-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .embed.vertical { max-width: 100%; }
+  .services { grid-template-columns: 1fr; }
+  .service { padding: 22px; }
+  .service h3 { margin-top: 19px; }
+  .aboutgrid { grid-template-columns: 1fr; gap: 14px; }
+  .contact { align-items: flex-start; flex-direction: column; }
+  .footer { align-items: flex-start; flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* Light, minimal finish */
+body { background: #f5f0e5; color: #171717; }
+.nav { border-bottom-color: #ded7ca; }
+.navlinks a:hover, .socials a:hover { color: #304bff; }
+.btn { transition: transform .18s ease, box-shadow .18s ease; }
+.btn:hover { transform: translate(2px, 2px); box-shadow: 2px 3px 0 #171717; }
+.project { border-color: #d8d1c4; background: #fffdf7; }
+.embed-placeholder { background: radial-gradient(ellipse at 50% 20%, #fffdf7 0%, #e9e3d7 75%); color: #171717; }
+.play { color: #171717; border-color: #171717; background: #fffdf7; }
+.embed-placeholder strong { color: #171717; }
+.service { background: #fffdf7; border-color: #d8d1c4; }
+.note { background: #171717; color: #f5f0e5; }
+.contact { background: #304bff; color: #fff; }
+.contact-links a { color: #fff; border-bottom-color: rgba(255,255,255,.45); }
+@media (max-width: 650px) { .navlinks.open { background: rgba(245,240,229,.98); } }
+</style>
+</head>
+<body>
+<main class="root">
+<div class="wrap">
+<header class="nav">
+  <a class="logo" href="#home" aria-label="DulaMotion home">DULA<span>.</span></a>
+  <nav class="navlinks" id="navlinks" aria-label="Main navigation">
+    <a href="#work">WORK</a><a href="#services">SERVICES</a><a href="#about">ABOUT</a><a class="nav-contact" href="#contact">CONTACT ↗</a>
+  </nav>
+  <button class="menu" id="menuButton" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+</header>
+
+<section class="hero" id="home">
+  <div class="eyebrows"><span class="pill"><i class="dot"></i> AVAILABLE FOR WORK</span><span class="pill">INDEPENDENT CREATIVE</span></div>
+  <div class="brand-script">dulamotion</div>
+  <h1>Every frame<br><span class="accent">has a purpose.</span></h1>
+  <p class="role">Video Editor · Motion Designer · AI Visual Specialist</p>
+  <p class="desc">I turn ideas into scroll-stopping edits, expressive motion, and visuals people remember.</p>
+  <div class="actions"><a class="btn primary" href="#work">Explore my work <span>↗</span></a><a class="btn" href="#contact">Let's talk <span>↗</span></a></div>
+</section>
+
+<section class="section" id="work">
+  <div class="sectionhead"><div><div class="kicker">SELECTED WORK / 01</div><h2>Long-form edits.</h2></div><p>Selected videos and storytelling projects.</p></div>
+  <div class="projects long-grid">
+    <article class="project"><div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/p7XoPjjc-8U" title="DulaMotion long-form video 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="projectfoot"><div><strong>Long-Form Edit</strong><br><small>YOUTUBE · STORYTELLING</small></div><a class="arrow" href="https://youtu.be/p7XoPjjc-8U" target="_blank" rel="noopener noreferrer" aria-label="Open long-form video on YouTube">↗</a></div></article>
+    <article class="project"><div class="embed"><div class="embed-placeholder"><span class="play">▶</span><strong>Long-Form Video 02</strong></div></div><div class="projectfoot"><div><strong>Video Project</strong><br><small>YOUTUBE · EDITING</small></div><span class="arrow">↗</span></div></article>
+    <article class="project"><div class="embed"><div class="embed-placeholder"><span class="play">▶</span><strong>Long-Form Video 03</strong></div></div><div class="projectfoot"><div><strong>Story Edit</strong><br><small>LONG-FORM · PACING</small></div><span class="arrow">↗</span></div></article>
+    <article class="project"><div class="embed"><div class="embed-placeholder"><span class="play">▶</span><strong>Long-Form Video 04</strong></div></div><div class="projectfoot"><div><strong>Cinematic Edit</strong><br><small>LONG-FORM · VISUALS</small></div><span class="arrow">↗</span></div></article>
+  </div>
+  <div class="sectionhead short-heading"><div><div class="kicker">SOCIAL CONTENT / 02</div><h2>Short-form edits.</h2></div><p>Reels, Shorts, and vertical content.</p></div>
+  <div class="projects short-grid">
+    <article class="project"><div class="embed vertical"><div class="embed-placeholder"><span class="play">▶</span><strong>Short-Form Video 01</strong></div></div><div class="projectfoot"><div><strong>Short-Form Edit 01</strong><br><small>REELS · SHORTS</small></div><span class="arrow">↗</span></div></article>
+    <article class="project"><div class="embed vertical"><div class="embed-placeholder"><span class="play">▶</span><strong>Short-Form Video 02</strong></div></div><div class="projectfoot"><div><strong>Short-Form Edit 02</strong><br><small>SOCIAL CONTENT</small></div><span class="arrow">↗</span></div></article>
+    <article class="project"><div class="embed vertical"><div class="embed-placeholder"><span class="play">▶</span><strong>Short-Form Video 03</strong></div></div><div class="projectfoot"><div><strong>Short-Form Edit 03</strong><br><small>REELS · EDITING</small></div><span class="arrow">↗</span></div></article>
+    <article class="project"><div class="embed vertical"><div class="embed-placeholder"><span class="play">▶</span><strong>Short-Form Video 04</strong></div></div><div class="projectfoot"><div><strong>Short-Form Edit 04</strong><br><small>MOTION · VISUALS</small></div><span class="arrow">↗</span></div></article>
+  </div>
+  <p class="hint">Video slots are ready for your links. Replace the placeholder cards with YouTube, Vimeo, or MP4 embeds when you’re ready.</p>
+</section>
+
+<section class="section" id="services">
+  <div class="sectionhead"><div><div class="kicker">WHAT I DO / 03</div><h2>Crafted for impact.</h2></div><p>Editing, motion, social content, and AI visuals.</p></div>
+  <div class="services">
+    <article class="service"><span class="num">01 / STORY</span><h3>Long-Form Video Production</h3><p>YouTube videos, documentaries, and story-led edits.</p></article>
+    <article class="service"><span class="num">02 / MOTION</span><h3>Motion Design &amp; Visual Effects</h3><p>Motion graphics, animated typography, and visual effects.</p></article>
+    <article class="service"><span class="num">03 / SOCIAL</span><h3>Short-Form Viral Content</h3><p>Reels, TikToks, and Shorts with sharp pacing and sound design.</p></article>
+    <article class="service"><span class="num">04 / AI VISUALS</span><h3>AI-Enhanced Visuals &amp; Storyboarding</h3><p>AI-assisted visuals, concepts, and storyboards for modern edits.</p></article>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="aboutgrid"><div><div class="kicker">A LITTLE ABOUT ME / 04</div><h2>Good visuals catch the eye.<br>Great stories stay.</h2><p>I'm Abdullah, the creative behind DulaMotion. I turn raw footage and ideas into polished videos with thoughtful editing, motion, and sound.</p></div><div class="note">Make every second count.<br><span>Make every frame matter.</span></div></div>
+</section>
+
+<section class="section" id="contact">
+  <div class="contact"><div><div class="kicker">HAVE A PROJECT? / 05</div><h2>Let's make something that moves.</h2><p>Got a project in mind? Let's talk.</p>
+    <div class="contact-links"><a href="mailto:dulamotion@gmail.com">✉ <span>dulamotion@gmail.com</span> ↗</a><a href="https://www.instagram.com/dulamotion/" target="_blank" rel="noopener noreferrer">◎ <span>@dulamotion on Instagram</span> ↗</a></div>
+  </div><a class="btn primary" href="mailto:dulamotion@gmail.com">Get in touch ↗</a></div>
+</section>
+
+<footer class="footer"><div><strong class="logo" style="font-size:18px">DULA<span>.</span></strong> &nbsp; © 2026 DulaMotion</div><div class="socials"><a href="https://www.instagram.com/dulamotion/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.behance.net/REPLACE_WITH_YOUR_USERNAME" target="_blank" rel="noopener noreferrer">Behance ↗</a></div></footer>
+</div>
+</main>
+<script>
+const menuButton = document.getElementById('menuButton');
+const navlinks = document.getElementById('navlinks');
+menuButton.addEventListener('click', () => {
+  const isOpen = navlinks.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+});
+document.querySelectorAll('a[href="#contact"]').forEach(link => {
+  link.addEventListener('click', event => {
+    const target = document.getElementById('contact');
+    if (target) {
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', '#contact');
+    }
+    navlinks.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+  });
+});
+document.querySelectorAll('.navlinks a').forEach(link => link.addEventListener('click', () => {
+  navlinks.classList.remove('open');
+  menuButton.setAttribute('aria-expanded', 'false');
+}));
+</script>
+</body>
+</html>
