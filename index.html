@@ -63,7 +63,30 @@ button { font: inherit; }
 .section { padding: 83px 0; border-top: 1px solid var(--line); }
 .sectionhead { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
 .kicker { font-size: 11px; letter-spacing: .17em; text-transform: uppercase; font-weight: 900; color: var(--accent); }
-h2 { font-size: clamp(34px, 5vw, 54px); letter-spacing: -.07em; line-height: 1.04; margin: 12px 0 0; font-weight: 680; }
+h2 { font-size: clamp(34px, 5vw, 54px); letter-spacing: -.07em; line-height: 1.04; margin: 12px 0 0; font-weight: 800; }
+h2 em { color: var(--accent); font-family: Georgia, 'Times New Roman', serif; font-weight: 500; letter-spacing: -.065em; }
+.sectionhead { position: relative; }
+.sectiontools { display:flex; align-items:center; gap:9px; flex-shrink:0; }
+.carousel-btn { width:42px; height:42px; border:1.5px solid #171717; border-radius:50%; background:#fffdf7; font-size:21px; display:grid; place-items:center; cursor:pointer; box-shadow:3px 3px 0 #171717; transition:transform .2s, box-shadow .2s, background .2s; }
+.carousel-btn:hover { background:#e9edff; transform:translate(2px,2px); box-shadow:1px 1px 0 #171717; }
+.dot-pattern { height:15px; width:100%; margin:0 0 17px; background-image:radial-gradient(#304bff 1.3px, transparent 1.4px); background-size:13px 13px; opacity:.6; }
+.project { border: 1.5px solid #171717; border-radius: 18px; background: #fffdf7; padding: 10px; overflow: visible; box-shadow: 5px 5px 0 #f2b84b; transition: border-color .25s ease, transform .25s ease, background .25s ease, box-shadow .25s ease; }
+.project:nth-child(2n) { box-shadow:5px 5px 0 #304bff; }
+.project:nth-child(3n) { box-shadow:5px 5px 0 #f28b72; }
+.project:hover { transform: translate(-2px,-2px); border-color: #171717; background: #ffffff; box-shadow:7px 7px 0 #f2b84b; }
+.project:nth-child(2n):hover { box-shadow:7px 7px 0 #304bff; }
+.project:nth-child(3n):hover { box-shadow:7px 7px 0 #f28b72; }
+.embed { border-radius: 10px; }
+.embed.vertical { border:1.5px solid #171717; border-radius:18px; background:#171717; padding:7px; aspect-ratio:9/16; }
+.embed.vertical::before { content:""; position:absolute; z-index:2; top:11px; left:50%; transform:translateX(-50%); width:62px; height:13px; border-radius:0 0 10px 10px; background:#171717; pointer-events:none; }
+.embed.vertical .embed-placeholder { border-radius:11px; }
+.embed.vertical iframe { border-radius:11px; }
+.short-grid { display:flex; gap:20px; overflow-x:auto; overflow-y:hidden; padding:7px 8px 18px 4px; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#304bff #e5ddcf; }
+.short-grid::-webkit-scrollbar { height:10px; }
+.short-grid::-webkit-scrollbar-track { background:#e5ddcf; border-radius:99px; }
+.short-grid::-webkit-scrollbar-thumb { background:#304bff; border:2px solid #e5ddcf; border-radius:99px; }
+.short-grid .project { flex:0 0 calc(25% - 15px); min-width:205px; scroll-snap-align:start; }
+.short-grid .embed.vertical { max-width:none; }
 .sectionhead p { color: var(--muted); max-width: 350px; line-height: 1.75; font-size: 13px; margin: 0; }
 .projects { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
 .project { border: 1px solid #d8d1c4; border-radius: 18px; background: #fffdf7; padding: 12px; overflow: hidden; transition: border-color .25s ease, transform .25s ease, background .25s ease; }
@@ -90,12 +113,16 @@ h2 { font-size: clamp(34px, 5vw, 54px); letter-spacing: -.07em; line-height: 1.0
 .aboutgrid p { color: var(--muted); line-height: 1.9; font-size: 15px; }
 .note { border: 1px solid var(--line); background: #171717; color: #f5f0e5; border-radius: 20px; padding: 34px; font-size: clamp(25px, 4vw, 42px); line-height: 1.13; font-weight: 650; letter-spacing: -.06em; }
 .note span { color: var(--accent); }
-.contact { border: 1px solid rgba(255,255,255,.16); background: #304bff; color: #fff; border-radius: 22px; padding: clamp(28px, 6vw, 58px); display: flex; align-items: center; justify-content: space-between; gap: 25px; }
-.contact h2 { font-size: clamp(36px, 6vw, 62px); max-width: 650px; }
-.contact p { line-height: 1.7; color: var(--muted); font-size: 14px; }
-.contact-links { display: grid; gap: 12px; margin-top: 25px; }
-.contact-links a { width: fit-content; display: inline-flex; gap: 10px; align-items: center; color: #f3f4f8; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,.22); padding-bottom: 5px; transition: color .2s ease, border-color .2s ease; }
-.contact-links a:hover { color: var(--accent); border-color: var(--accent); }
+.contact { position:relative; overflow:hidden; border:0; background:#171412; color:#f5f0e5; border-radius:30px; padding:clamp(36px,6vw,70px) 28px; display:flex; align-items:center; justify-content:center; text-align:center; }
+.contact::before { content:""; position:absolute; width:170px; height:170px; border-radius:50%; background:#f2b84b; opacity:.13; top:-85px; right:-35px; }
+.contact::after { content:"✦"; position:absolute; left:-12px; bottom:-32px; color:#304bff; font-size:115px; line-height:1; opacity:.2; transform:rotate(-15deg); }
+.contact h2 { font-size:clamp(36px,6vw,58px); max-width:720px; margin:18px auto 0; }
+.contact h2 em { color:#f2b84b; }
+.contact p { line-height:1.7; color:#d0c9bc; font-size:14px; }
+.contact-links { display:flex; justify-content:center; align-items:center; gap:16px; flex-wrap:wrap; margin-top:28px; }
+.contact-links a { position:relative; z-index:1; width:fit-content; display:inline-flex; gap:10px; align-items:center; justify-content:center; color:#171412; font-size:14px; font-weight:800; border:2px solid #f5f0e5; border-radius:999px; padding:15px 24px; background:#f2b84b; box-shadow:5px 5px 0 #f5f0e5; transition:transform .2s ease,box-shadow .2s ease; }
+.contact-links a:last-child { background:#304bff; color:#fff; }
+.contact-links a:hover { transform:translate(3px,3px); box-shadow:2px 2px 0 #f5f0e5; }
 .footer { padding: 27px 0 34px; display: flex; justify-content: space-between; gap: 15px; align-items: center; font-size: 11px; color: var(--muted); }
 .footer strong { color: var(--text); }
 .socials { display: flex; gap: 20px; flex-wrap: wrap; }
@@ -122,19 +149,41 @@ h2 { font-size: clamp(34px, 5vw, 54px); letter-spacing: -.07em; line-height: 1.0
   .sectionhead { display: block; }
   .sectionhead p { margin-top: 14px; }
   .projects { grid-template-columns: 1fr; }
-  .projects.short-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .projects.long-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap:13px; }
+  .projects.short-grid { display:flex; gap:15px; }
+  .short-grid .project { flex-basis: min(72vw, 250px); min-width:0; }
   .embed.vertical { max-width: 100%; }
+  .sectiontools { margin-top:16px; justify-content:space-between; }
+  .sectiontools p { flex:1; }
+  .carousel-btn { width:38px; height:38px; }
+  .project { padding:7px; box-shadow:4px 4px 0 #f2b84b; }
+  .project:nth-child(2n) { box-shadow:4px 4px 0 #304bff; }
+  .project:nth-child(3n) { box-shadow:4px 4px 0 #f28b72; }
   .services { grid-template-columns: 1fr; }
   .service { padding: 22px; }
   .service h3 { margin-top: 19px; }
   .aboutgrid { grid-template-columns: 1fr; gap: 14px; }
-  .contact { align-items: flex-start; flex-direction: column; }
+  .contact { padding:42px 20px; }
+  .contact-links { gap:14px; }
+  .contact-links a { padding:13px 18px; font-size:13px; }
   .footer { align-items: flex-start; flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
 
+/* Custom portfolio details inspired by the reference */
+.projects.long-grid { display:flex; gap:18px; overflow-x:auto; overflow-y:hidden; padding:7px 8px 18px 4px; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#304bff #e5ddcf; }
+.projects.long-grid::-webkit-scrollbar { height:10px; }
+.projects.long-grid::-webkit-scrollbar-track { background:#e5ddcf; border-radius:99px; }
+.projects.long-grid::-webkit-scrollbar-thumb { background:#304bff; border:2px solid #e5ddcf; border-radius:99px; }
+.projects.long-grid .project { flex:0 0 calc(50% - 9px); scroll-snap-align:start; }
+@media (max-width:650px) {
+  .projects.long-grid { display:flex; }
+  .projects.long-grid .project { flex-basis:84%; }
+  .sectiontools { flex-wrap:wrap; }
+  .sectiontools p { min-width:100%; }
+}
 /* Light, minimal finish */
 body { background: #f5f0e5; color: #171717; }
 .nav { border-bottom-color: #ded7ca; }
@@ -147,8 +196,7 @@ body { background: #f5f0e5; color: #171717; }
 .embed-placeholder strong { color: #171717; }
 .service { background: #fffdf7; border-color: #d8d1c4; }
 .note { background: #171717; color: #f5f0e5; }
-.contact { background: #304bff; color: #fff; }
-.contact-links a { color: #fff; border-bottom-color: rgba(255,255,255,.45); }
+.contact { background: #171412; color: #f5f0e5; }
 @media (max-width: 650px) { .navlinks.open { background: rgba(245,240,229,.98); } }
 </style>
 </head>
@@ -173,25 +221,28 @@ body { background: #f5f0e5; color: #171717; }
 </section>
 
 <section class="section" id="work">
-  <div class="sectionhead"><div><div class="kicker">SELECTED WORK / 01</div><h2>Long-form edits.</h2></div><p>Selected videos and storytelling projects.</p></div>
-  <div class="projects long-grid">
-    <article class="project"><div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/p7XoPjjc-8U" title="DulaMotion long-form video 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="projectfoot"><div><strong>Long-Form Edit</strong><br><small>YOUTUBE · STORYTELLING</small></div><a class="arrow" href="https://youtu.be/p7XoPjjc-8U" target="_blank" rel="noopener noreferrer" aria-label="Open long-form video on YouTube">↗</a></div></article>
-    <article class="project"><div class="embed"><div class="embed-placeholder"><span class="play">▶</span><strong>Long-Form Video 02</strong></div></div><div class="projectfoot"><div><strong>Video Project</strong><br><small>YOUTUBE · EDITING</small></div><span class="arrow">↗</span></div></article>
-    <article class="project"><div class="embed"><div class="embed-placeholder"><span class="play">▶</span><strong>Long-Form Video 03</strong></div></div><div class="projectfoot"><div><strong>Story Edit</strong><br><small>LONG-FORM · PACING</small></div><span class="arrow">↗</span></div></article>
-    <article class="project"><div class="embed"><div class="embed-placeholder"><span class="play">▶</span><strong>Long-Form Video 04</strong></div></div><div class="projectfoot"><div><strong>Cinematic Edit</strong><br><small>LONG-FORM · VISUALS</small></div><span class="arrow">↗</span></div></article>
+  <div class="sectionhead"><div><div class="kicker">SELECTED WORK / 01</div><h2>Long-form <em>edits.</em></h2></div><div class="sectiontools"><p>Selected videos and storytelling projects.</p><button class="carousel-btn" type="button" aria-label="Scroll long-form videos left" data-scroll="long-grid" data-dir="-1">←</button><button class="carousel-btn" type="button" aria-label="Scroll long-form videos right" data-scroll="long-grid" data-dir="1">→</button></div></div>
+  <div class="dot-pattern" aria-hidden="true"></div>
+  <div class="projects long-grid" id="long-grid">
+    <article class="project"><div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/p7XoPjjc-8U" title="DulaMotion long-form video 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+    <article class="project"><div class="embed"><iframe src="https://www.youtube.com/embed/n_P5psB5m90" title="DulaMotion long-form video 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+    <article class="project"><div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/KzzyvBBdBXQ" title="DulaMotion long-form video 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+    <article class="project"><div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/vSnRP6-9Za4" title="DulaMotion long-form video 4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
   </div>
-  <div class="sectionhead short-heading"><div><div class="kicker">SOCIAL CONTENT / 02</div><h2>Short-form edits.</h2></div><p>Reels, Shorts, and vertical content.</p></div>
-  <div class="projects short-grid">
-    <article class="project"><div class="embed vertical"><div class="embed-placeholder"><span class="play">▶</span><strong>Short-Form Video 01</strong></div></div><div class="projectfoot"><div><strong>Short-Form Edit 01</strong><br><small>REELS · SHORTS</small></div><span class="arrow">↗</span></div></article>
-    <article class="project"><div class="embed vertical"><div class="embed-placeholder"><span class="play">▶</span><strong>Short-Form Video 02</strong></div></div><div class="projectfoot"><div><strong>Short-Form Edit 02</strong><br><small>SOCIAL CONTENT</small></div><span class="arrow">↗</span></div></article>
-    <article class="project"><div class="embed vertical"><div class="embed-placeholder"><span class="play">▶</span><strong>Short-Form Video 03</strong></div></div><div class="projectfoot"><div><strong>Short-Form Edit 03</strong><br><small>REELS · EDITING</small></div><span class="arrow">↗</span></div></article>
-    <article class="project"><div class="embed vertical"><div class="embed-placeholder"><span class="play">▶</span><strong>Short-Form Video 04</strong></div></div><div class="projectfoot"><div><strong>Short-Form Edit 04</strong><br><small>MOTION · VISUALS</small></div><span class="arrow">↗</span></div></article>
+  <div class="sectionhead short-heading"><div><div class="kicker">SOCIAL CONTENT / 02</div><h2>Reels &amp; <em>shorts.</em></h2></div><div class="sectiontools"><p>Reels, Shorts, and vertical content.</p><button class="carousel-btn" type="button" aria-label="Scroll short-form videos left" data-scroll="short-grid" data-dir="-1">←</button><button class="carousel-btn" type="button" aria-label="Scroll short-form videos right" data-scroll="short-grid" data-dir="1">→</button></div></div>
+  <div class="dot-pattern" aria-hidden="true"></div>
+  <div class="projects short-grid" id="short-grid">
+    <article class="project"><div class="embed vertical"><iframe src="https://www.youtube-nocookie.com/embed/dP8AJzT9ajw" title="DulaMotion short-form video 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+    <article class="project"><div class="embed vertical"><iframe src="https://www.youtube-nocookie.com/embed/pPo2sKuOQgE" title="DulaMotion short-form video 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+    <article class="project"><div class="embed vertical"><iframe src="https://www.youtube-nocookie.com/embed/Ck751UYBOtU" title="DulaMotion short-form video 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+    <article class="project"><div class="embed vertical"><iframe src="https://www.youtube-nocookie.com/embed/vzZen9w0w9Q" title="DulaMotion short-form video 4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+    <article class="project"><div class="embed vertical"><iframe src="https://www.youtube-nocookie.com/embed/7Vm9MVnVkxo" title="DulaMotion short-form video 5" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+    <article class="project"><div class="embed vertical"><div class="embed-placeholder"><span class="play">▶</span><strong>Short-Form Video 06</strong></div></div></article>
   </div>
-  <p class="hint">Video slots are ready for your links. Replace the placeholder cards with YouTube, Vimeo, or MP4 embeds when you’re ready.</p>
 </section>
 
 <section class="section" id="services">
-  <div class="sectionhead"><div><div class="kicker">WHAT I DO / 03</div><h2>Crafted for impact.</h2></div><p>Editing, motion, social content, and AI visuals.</p></div>
+  <div class="sectionhead"><div><div class="kicker">WHAT I DO / 03</div><h2>Crafted for <em>impact.</em></h2></div><p>Editing, motion, social content, and AI visuals.</p></div>
   <div class="services">
     <article class="service"><span class="num">01 / STORY</span><h3>Long-Form Video Production</h3><p>YouTube videos, documentaries, and story-led edits.</p></article>
     <article class="service"><span class="num">02 / MOTION</span><h3>Motion Design &amp; Visual Effects</h3><p>Motion graphics, animated typography, and visual effects.</p></article>
@@ -201,13 +252,13 @@ body { background: #f5f0e5; color: #171717; }
 </section>
 
 <section class="section" id="about">
-  <div class="aboutgrid"><div><div class="kicker">A LITTLE ABOUT ME / 04</div><h2>Good visuals catch the eye.<br>Great stories stay.</h2><p>I'm Abdullah, the creative behind DulaMotion. I turn raw footage and ideas into polished videos with thoughtful editing, motion, and sound.</p></div><div class="note">Make every second count.<br><span>Make every frame matter.</span></div></div>
+  <div class="aboutgrid"><div><div class="kicker">A LITTLE ABOUT US / 04</div><h2>Good edits.<br>Better <em>stories.</em></h2><p>We're a team of creatives who turn raw footage and ideas into polished videos with thoughtful editing, motion, and sound.</p></div><div class="note">Make every second count.<br><span>Make every frame matter.</span></div></div>
 </section>
 
 <section class="section" id="contact">
-  <div class="contact"><div><div class="kicker">HAVE A PROJECT? / 05</div><h2>Let's make something that moves.</h2><p>Got a project in mind? Let's talk.</p>
-    <div class="contact-links"><a href="mailto:dulamotion@gmail.com">✉ <span>dulamotion@gmail.com</span> ↗</a><a href="https://www.instagram.com/dulamotion/" target="_blank" rel="noopener noreferrer">◎ <span>@dulamotion on Instagram</span> ↗</a></div>
-  </div><a class="btn primary" href="mailto:dulamotion@gmail.com">Get in touch ↗</a></div>
+  <div class="contact"><div><div class="kicker" style="color:#f2b84b">● LET'S WORK TOGETHER</div><h2>Got ideas that need a <em>Cinematic</em> touch?</h2>
+    <div class="contact-links"><a href="https://www.instagram.com/dulamotion/" target="_blank" rel="noopener noreferrer">@dulamotion ↗</a><a href="mailto:dulamotion@gmail.com">Email me ↗</a></div>
+  </div></div>
 </section>
 
 <footer class="footer"><div><strong class="logo" style="font-size:18px">DULA<span>.</span></strong> &nbsp; © 2026 DulaMotion</div><div class="socials"><a href="https://www.instagram.com/dulamotion/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.behance.net/REPLACE_WITH_YOUR_USERNAME" target="_blank" rel="noopener noreferrer">Behance ↗</a></div></footer>
@@ -230,6 +281,20 @@ document.querySelectorAll('a[href="#contact"]').forEach(link => {
     }
     navlinks.classList.remove('open');
     menuButton.setAttribute('aria-expanded', 'false');
+  });
+});
+document.querySelectorAll('[data-scroll]').forEach(button => {
+  button.addEventListener('click', () => {
+    const target = document.getElementById(button.dataset.scroll);
+    if (!target) return;
+    const direction = Number(button.dataset.dir || 1);
+    if (target.classList.contains('short-grid')) {
+      target.scrollBy({ left: direction * Math.max(250, target.clientWidth * 0.75), behavior: 'smooth' });
+    } else {
+      const firstCard = target.querySelector('.project');
+      const step = firstCard ? firstCard.getBoundingClientRect().width + 18 : target.clientWidth * 0.8;
+      target.scrollBy({ left: direction * step, behavior: 'smooth' });
+    }
   });
 });
 document.querySelectorAll('.navlinks a').forEach(link => link.addEventListener('click', () => {
